@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#171c38" />
+    <title>Notely — lecture notes you can study from</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="#top"><span class="brand-mark">n</span>notely</a><nav><a href="#create">Create</a><a href="#projects">Projects</a><a href="#how-it-works">How it works</a></nav><button class="text-button" id="new-note">+ New notes</button></header>
+    <main id="top">
+      <section class="intro"><div><p class="eyebrow">YOUR PERSONAL STUDY STUDIO</p><h1>Lecture notes,<br /><em>made beautifully clear.</em></h1><p>Transform a lecture transcript into structured, study-ready notes. Keep the source beside every idea, then download a clean PDF when you are done.</p></div><div class="intro-orbit"><span>✦</span><div class="orbit-card"><small>FROM YOUR LECTURE</small><b>→ Clear concepts<br />→ Key takeaways<br />→ Study prompts</b></div></div></section>
+
+      <section class="creator" id="create" aria-labelledby="create-title"><div class="creator-title"><div><p class="eyebrow">01 · START A PROJECT</p><h2 id="create-title">Bring your <em>lecture.</em></h2></div><p>Paste a link for reference, then add a transcript.<br />Nothing leaves this browser.</p></div>
+        <div class="source-tabs" role="tablist"><button class="source-tab active" data-mode="link" role="tab" aria-selected="true">Lecture link</button><button class="source-tab" data-mode="transcript" role="tab" aria-selected="false">Transcript file</button></div>
+        <div class="source-panel" id="link-panel"><label for="lecture-url">LECTURE LINK <span>OPTIONAL</span></label><div class="input-row"><input id="lecture-url" type="url" placeholder="https://youtube.com/watch?v=..." /><span class="input-badge">↗</span></div><p class="field-help">Links are saved as a reference in your notes. Add the transcript below for accurate, source-grounded notes.</p></div>
+        <div class="source-panel hidden" id="file-panel"><label for="transcript-file">TRANSCRIPT FILE</label><label class="dropzone" for="transcript-file"><input id="transcript-file" type="file" accept=".txt,.md,.srt,.vtt" /><span class="upload-icon">↑</span><b>Drop a TXT, SRT, VTT or MD file here</b><small>or click to browse · up to 10 MB</small></label><p class="file-name" id="file-name"></p></div>
+        <div class="transcript-section"><div class="transcript-label"><label for="transcript">LECTURE TRANSCRIPT</label><span id="word-count">0 words</span></div><textarea id="transcript" placeholder="Paste the lecture transcript here. Timestamps like [02:14] are kept with their ideas, so you can return to the exact moment in the lecture."></textarea><div class="transcript-footer"><button class="sample-link" id="load-sample">Use a sample lecture</button><span>Tip: include board descriptions like “On the board: F = ma” for richer notes.</span></div></div>
+        <div class="settings"><div><label for="language">TRANSCRIPT LANGUAGE</label><select id="language"><option value="English">English</option><option value="Hindi">Hindi</option><option value="Spanish">Spanish</option><option value="French">French</option><option value="German">German</option><option value="Japanese">Japanese</option></select></div><div class="custom-wrap"><label for="customize">MAKE IT YOURS <span>OPTIONAL</span></label><input id="customize" type="text" placeholder="e.g. Focus on formulas and add a revision checklist" /></div></div>
+        <button class="generate" id="generate">Generate my notes <span>→</span></button><p class="privacy">∞ Free to use · no account needed · processed in your browser</p>
+      </section>
+
+      <section class="depth-section" id="how-it-works"><div class="section-title"><p class="eyebrow">02 · CHOOSE A DEPTH</p><h2>Study at the level<br /><em>you need today.</em></h2></div><div class="depth-options" id="depth-options"><button class="depth-card active" data-depth="summary"><span class="depth-number">01</span><h3>Summary</h3><p>Quick, high-signal revision.</p><ul><li>Core ideas</li><li>Key terms</li><li>Fast recap</li></ul></button><button class="depth-card" data-depth="detailed"><span class="depth-number">02</span><span class="recommended">RECOMMENDED</span><h3>Detailed</h3><p>A complete study companion.</p><ul><li>Concept explanations</li><li>Examples & equations</li><li>Connections</li></ul></button><button class="depth-card" data-depth="deep"><span class="depth-number">03</span><h3>Deep</h3><p>Learn it as if teaching it.</p><ul><li>Step-by-step ideas</li><li>Board-work callouts</li><li>Revision questions</li></ul></button></div></section>
+
+      <section class="results hidden" id="results" aria-live="polite"><div class="results-top"><div><p class="eyebrow">03 · YOUR NOTES</p><h2 id="note-title">Lecture notes</h2><p class="source-meta" id="source-meta"></p></div><div class="result-actions"><button class="secondary" id="edit-notes">← Edit source</button><button class="download" id="download-pdf">Download PDF ↓</button></div></div><div class="note-layout"><aside class="note-sidebar"><b>IN THIS NOTE</b><nav id="note-toc"></nav><div class="accuracy"><span>✦</span><p><b>Grounded in your text</b>Only ideas found in the supplied transcript are used.</p></div></aside><article class="note-paper" id="note-paper"></article></div></section>
+
+      <section class="projects" id="projects"><div class="projects-header"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Recent <em>projects.</em></h2></div><span>Projects are saved for this browser session.</span></div><div class="project-list" id="project-list"><p class="empty-projects">Your generated notes will appear here.</p></div></section>
+    </main>
+    <template id="project-template"><article class="project"><div class="project-icon">✦</div><div><span class="project-depth"></span><h3></h3><p></p></div><button class="open-project">Open →</button></article></template>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
