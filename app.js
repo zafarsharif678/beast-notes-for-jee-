@@ -4,7 +4,7 @@ const transcript = $('#transcript');
 const toast = $('#toast');
 let selectedDepth = 'summary';
 let currentProject = null;
-
+const transcriptApiUrl = window.NOTELY_API_URL || '/api/transcript';
 const sampleTranscript = `[00:00] Today we will understand Newton's second law of motion. It tells us how force changes the motion of an object.
 [00:18] On the board: Force equals mass times acceleration, written as F = ma. Force is measured in newtons, mass in kilograms, and acceleration in metres per second squared.
 [00:48] A force is a push or a pull. If the net force on an object is zero, its acceleration is zero. This does not mean it stops; it may continue at constant velocity.
